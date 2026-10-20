@@ -1,0 +1,115 @@
+This is the code for the website 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light py-4">
+
+    <div class="container">
+        <!-- Main Heading (h1) -->
+        <h1 class="text-center fw-bold mb-1">Carbon Footprint Calculator</h1>
+        
+        <!-- Subheading (h2) -->
+        <h2 class="text-center text-secondary fs-4 mb-4">Climate change is real!!</h2>
+
+        <!-- Introduction Paragraph (p) -->
+        <p class="text-center text-muted px-md-5 mb-4">
+            Welcome to the Carbon Footprint Calculator. Understanding your environmental impact is the first step toward building a sustainable future. Use our interactive tool below to track and evaluate your daily carbon emissions across travel, energy usage, and lifestyle choices.
+        </p>
+
+        <!-- Environmental Sustainability Image -->
+        <div class="text-center mb-5">
+            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80" alt="Environmental Sustainability and Green Earth" class="img-fluid rounded shadow-sm custom-hero-img">
+        </div>
+
+        <!-- Secondary Heading (h4) encouraging users -->
+        <h4 class="text-center fw-semibold mb-3">Ready to assess your carbon footprint? Let's begin!</h4>
+
+        <!-- Supporting Paragraph -->
+        <p class="text-center text-muted mb-4">
+            Fill out the structured questionnaire below to calculate your estimated carbon output and discover personalized reduction tips.
+        </p>
+
+        <!-- Calculate Button (styled hyperlink using <a> tag as required) -->
+        <div class="text-center mb-5">
+            <a href="#calculator-card" class="btn btn-primary btn-lg px-4 py-2 shadow">Calculate</a>
+        </div>
+
+        <!-- Bootstrap Card Layout simulating the reference screenshot form -->
+        <div class="row justify-content-center" id="calculator-card">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-success">
+                    
+                    <!-- Navigation Tabs inside Card Header or above card -->
+                    <div class="card-header bg-white pt-3 pb-2 border-bottom">
+                        <ul class="nav nav-pills card-header-pills justify-content-center small">
+                            <li class="nav-item"><a class="nav-link active bg-success text-white" href="#">General</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" href="#">Home</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" href="#">Travel</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" href="#">Food</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" href="#">Electronic usage</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" href="#">Shopping</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" href="#">Result</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Card Header Title -->
+                    <div class="card-header bg-success text-white text-center py-2 fw-semibold">
+                        Fill the form below
+                    </div>
+
+                    <!-- Card Body with form elements -->
+                    <div class="card-body bg-white p-4">
+                        <form>
+                            <div class="mb-3 row align-items-center">
+                                <label for="name" class="col-sm-3 col-form-label fw-medium">Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="name" placeholder="Enter your full name">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row align-items-center">
+                                <label for="age" class="col-sm-3 col-form-label fw-medium">Age</label>
+                                <div class="col-sm-9">
+                                    <input type="number" class="form-control" id="age" placeholder="Enter your age">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row align-items-center">
+                                <label for="country" class="col-sm-3 col-form-label fw-medium">Country</label>
+                                <div class="col-sm-9">
+                                    <select class="form-select" id="country">
+                                        <option selected>Saudi Arabia</option>
+                                        <option value="ae">United Arab Emirates</option>
+                                        <option value="us">United States</option>
+                                        <option value="uk">United Kingdom</option>
+                                        <option value="ca">Canada</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Card Footer with navigation buttons -->
+                    <div class="card-footer bg-light d-flex justify-content-between py-3">
+                        <button type="button" class="btn btn-secondary btn-sm px-4" disabled>Prev</button>
+                        <button type="button" class="btn btn-success btn-sm px-4">Next</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
