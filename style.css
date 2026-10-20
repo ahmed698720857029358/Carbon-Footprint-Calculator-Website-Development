@@ -1,0 +1,50 @@
+
+body {
+    font-family: Arial, sans-serif;
+    color: #24332a;
+    background: #f4f8f5 !important;
+}
+
+h1 {
+    color: #176b3a;
+}
+
+.custom-hero-img {
+    width: 100%;
+    max-width: 750px;
+    max-height: 340px;
+    object-fit: cover;
+}
+
+.card {
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.card-header {
+    border-bottom: 1px solid #dce8df;
+}
+
+.form-control,
+.form-select {
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.btn-success {
+    background-color: #218849;
+    border-color: #218849;
+}
+
+.btn-success:hover {
+    background-color: #176b3a;
+}
+
+.result-panel {
+    border: 1px solid #cfe5d5;
+    background: #f0faf2 !important;
+}
+
+footer {
+    padding-bottom: 20px;
+}
