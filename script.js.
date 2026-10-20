@@ -1,0 +1,136 @@
+
+const panes = [...document.querySelectorAll(".step-pane")];
+const titles = [
+  "General information",
+  "Home energy",
+  "Travel",
+  "Food",
+  "Electronic usage",
+  "Shopping",
+  "Your results"
+];
+
+let currentStep = 0;
+
+const tabs = document.getElementById("tabs");
+const title = document.getElementById("step-title");
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+const form = document.getElementById("carbon-form");
+
+titles.forEach((name, i) => {
+  const li = document.createElement("li");
+  li.className = "nav-item";
+  li.innerHTML = `<span class="nav-link">${name}</span>`;
+  tabs.appendChild(li);
+});
+
+function showStep(step) {
+  currentStep = step;
+
+  panes.forEach((pane, i) => {
+    pane.classList.toggle("d-none", i !== step);
+  });
+
+  [...tabs.children].forEach((li, i) => {
+    const link = li.querySelector(".nav-link");
+    link.classList.toggle("active", i === step);
+    link.classList.toggle("bg-success", i === step);
+    link.classList.toggle("text-white", i === step);
+    link.classList.toggle("disabled", i > step);
+  });
+
+  title.textContent = titles[step];
+  prevBtn.disabled = step === 0;
+  nextBtn.textContent = step === panes.length - 1
+    ? "Start again"
+    : step === panes.length - 2
+      ? "Calculate results"
+      : "Next";
+}
+
+function calculateFootprint() {
+  const value = id => Number(document.getElementById(id).value) || 0;
+
+  let home = value("electricity") * 12 * 0.0005;
+  const ac = document.getElementById("ac").value;
+  home *= ac === "high" ? 1.3 : ac === "low" ? 0.75 : 1;
+
+  let travel = value("car") * 52 * 0.0002;
+  travel += value("flights") * 0.25;
+
+  const transport = document.getElementById("transport").value;
+  if (transport === "public") travel *= 0.6;
+  if (transport === "walk") travel *= 0.1;
+
+  const dietFactors = {
+    meat: 2.5,
+    mixed: 1.8,
+    vegetarian: 1.3,
+    vegan: 1
+  };
+  let food = dietFactors[document.getElementById("diet").value];
+  const waste = document.getElementById("waste").value;
+  food += waste === "often" ? 0.5 : waste === "rarely" ? -0.2 : 0;
+
+  let electronics = value("electronics") * 0.025;
+  const devices = document.getElementById("devices").value;
+  electronics *= devices === "many" ? 1.4 : devices === "few" ? 0.7 : 1;
+
+  const shoppingValue = {
+    often: 1.5,
+    sometimes: 0.8,
+    rarely: 0.3
+  };
+  let shopping = shoppingValue[document.getElementById("shopping").value];
+
+  const reuse = document.getElementById("reuse").value;
+  if (reuse === "yes") shopping *= 0.7;
+  if (reuse === "no") shopping *= 1.2;
+
+  const total = Math.max(0.1, home + travel + food + electronics + shopping);
+
+  document.getElementById("result-number").textContent = total.toFixed(2);
+  document.getElementById("result-message").textContent =
+    total < 3
+      ? "Your estimated footprint is relatively low. Keep up your sustainable habits!"
+      : total < 6
+        ? "There is room to reduce your impact with a few everyday changes."
+        : "Consider focusing on home energy, transport, and consumption to lower your impact.";
+
+  document.getElementById("tips-list").innerHTML = `
+    <li>Turn off lights and appliances when you are not using them.</li>
+    <li>Choose public transport, carpooling, walking, or cycling when practical.</li>
+    <li>Reduce food waste and try more plant-based meals.</li>
+    <li>Keep electronics longer and recycle them responsibly.</li>
+    <li>Buy only what you need and reuse items where possible.</li>
+  `;
+}
+
+nextBtn.addEventListener("click", () => {
+  if (currentStep === panes.length - 1) {
+    form.reset();
+    showStep(0);
+    return;
+  }
+
+  const inputs = [...panes[currentStep].querySelectorAll("input, select")];
+  for (const input of inputs) {
+    if (!input.checkValidity()) {
+      input.reportValidity();
+      return;
+    }
+  }
+
+  if (currentStep === panes.length - 2) {
+    calculateFootprint();
+  }
+
+  showStep(currentStep + 1);
+});
+
+prevBtn.addEventListener("click", () => {
+  if (currentStep > 0) showStep(currentStep - 1);
+});
+
+showStep(0);
